@@ -113,7 +113,7 @@ class Blockchain(object):
         guess = f'{block_string}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
 
-        return guess_hash[:5] == "00000"
+        return guess_hash[:3] == "000"
 
 
 # Instantiate our Node
@@ -168,17 +168,6 @@ def mine():
         return jsonify(response), 400
 
     submitted_proof = values['proof']
-
-    # * Modify the `mine` endpoint to instead receive and
-    # validate or reject a new proof sent by a client.
-    # * It should accept a POST
-    # * Use `data = request.get_json()` to pull the
-    # data out of the POST
-    #     * Note that `request` and `requests` both exist
-    # in this project
-    # * Check that 'proof', and 'id' are present
-    #     * return a 400 error using `jsonify(response)`
-    # with a 'message'
 
     block_string = json.dumps(blockchain.last_block, sort_keys=True)
     if blockchain.valid_proof(block_string, submitted_proof):
