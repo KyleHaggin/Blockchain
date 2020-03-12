@@ -118,16 +118,16 @@ class Blockchain(object):
 
 # Instantiate our Node
 app = Flask(__name__)
-​
+
 # Generate a globally unique address for this node
 node_identifier = str(uuid4()).replace('-', '')
-​
+
 # Instantiate the Blockchain
 blockchain = Blockchain()
-​
+
 # Create an endpoint at `/transactions/new` that accepts a
 # json `POST`:
-​
+
 #     * use `request.get_json()` to pull the data out of the
 #     POST
 #     * check that 'sender', 'recipient', and 'amount'
@@ -137,7 +137,8 @@ blockchain = Blockchain()
 #     * upon success, return a 'message' indicating index of
 #       the block
 #       containing the transaction
-​
+
+
 @app.route('/transactions/new', methods=['POST'])
 def receive_transaction():
     # TODO: Handle non json request
