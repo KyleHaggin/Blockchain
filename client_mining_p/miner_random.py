@@ -7,7 +7,7 @@ import sys
 import json
 
 
-def proof_of_work(block):
+def proof_of_work(block, rand_step=999):
     """
     Simple Proof of Work Algorithm
     Stringify the block and look for a proof.
@@ -20,7 +20,7 @@ def proof_of_work(block):
 
     proof = 0
     while valid_proof(block_string, proof) is False:
-        proof += random.randint(0, 999)
+        proof += random.randint(1, rand_step)
 
     return proof
 
