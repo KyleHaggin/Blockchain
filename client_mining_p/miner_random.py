@@ -44,10 +44,15 @@ def valid_proof(block_string, proof):
 
 if __name__ == '__main__':
     # What is the server address? IE `python3 miner.py https://server.com/api/`
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and sys.argv[1] != 'none':
         node = sys.argv[1]
     else:
         node = "http://localhost:5000"
+
+    if len(sys.argv) > 2:
+        random_step = int(sys.argv[2])
+    else:
+        rand_step = 999
 
     # Load ID
     f = open(
@@ -74,7 +79,7 @@ if __name__ == '__main__':
 
         # TODO: Get the block from `data` and use it to look for a new proof
         block = data['last_block']
-        new_proof = proof_of_work(block)
+        new_proof = proof_of_work(block, random_step)
         print(f'Proof Found: {new_proof}')
 
         # When found, POST it to the server {"proof": new_proof, "id": id}
